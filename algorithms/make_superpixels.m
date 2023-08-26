@@ -1,4 +1,4 @@
-function [seg,L,seg_vals,seg_lab_vals,seg_edges,seg_img] = make_superpixels(img_loc,para_ms,para_gbis)
+function [seg,L,seg_vals,seg_lab_vals,seg_edges,seg_img,seg_img_lab] = make_superpixels(img_loc,para_ms,para_gbis)
 
 % Perform multiple over-segmentations by Mean Shift and FH with varying
 % parameters
@@ -23,11 +23,14 @@ end
 %%% make mean color image for display
 for k = 1:(para_ms.K + para_gbis.K)
     Mimg = zeros(X*Y,Z); 
+    Mimg_lab = zeros(X*Y,Z); 
     for i = 1:size(seg{k},2)
         for j = 1:Z
             Mimg(seg{k}{i},j) = seg_vals{k}(i,j)/255;
+            Mimg_lab(seg{k}{i},j) = seg_lab_vals{k}(i,j);
         end
     end
     seg_img{k} = reshape(Mimg,[X,Y,Z]);
+    seg_img_lab{k} = reshape(Mimg_lab,[X,Y,Z]);
 end
 

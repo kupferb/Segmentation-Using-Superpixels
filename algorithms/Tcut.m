@@ -1,4 +1,4 @@
-function label_img = Tcut(B,Nseg,img_size)
+function [label_img ,Ncut_evec]= Tcut(B,Nseg,img_size)
 
 % B - |X|-by-|Y|, cross-affinity-matrix
 % note that |X| = |Y| + |I|

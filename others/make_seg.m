@@ -11,7 +11,18 @@ function [seg seg_vals seg_lab_vals seg_edges] = make_seg(img,L,lab_vals,full)
 
 
 img = double(img);
-[X,Y,Z] = size(img); 
+[X,Y,Z] = size(img);
+
+% nseg = max(L(:)); 
+% sp_inds_map = containers.Map('KeyType','double','ValueType','any');
+% for i=1:nseg
+%     sp_inds = find(L(:)==i);
+%     for k_sp_ind = 1:length(sp_inds)
+%         sp_inds_map(sp_inds(k_sp_ind)) = sp_inds;
+%     end
+% end
+% L = reshape(1:X*Y,X,Y);
+
 nseg = max(L(:)); 
 vals = reshape(img,X*Y,Z);
 
@@ -24,14 +35,19 @@ else
     all_seg_edges = [L(d_edges(:,1)) L(d_edges(:,2))]; all_seg_edges = sort(all_seg_edges,2);
     
     tmp = zeros(nseg,nseg);
+%     tmp = sparse(nseg,nseg);
     tmp(nseg*(all_seg_edges(:,1)-1)+all_seg_edges(:,2)) = 1;
-    [edges_x edges_y] = find(tmp==1); seg_edges = [edges_x edges_y];
+    [edges_x edges_y] = find(tmp==1);
+    seg_edges = [edges_x edges_y];
 end
+
 
 seg_vals = zeros(nseg,Z);
 seg_lab_vals = zeros(nseg,size(lab_vals,2));
 for i=1:nseg
     seg{i} = find(L(:)==i);
+%     seg_vals(i,:) = mean(vals(sp_inds_map(i),:));
+%     seg_lab_vals(i,:) = mean(lab_vals(sp_inds_map(i),:));
     seg_vals(i,:) = mean(vals(seg{i},:));
     seg_lab_vals(i,:) = mean(lab_vals(seg{i},:));
 end

@@ -1,4 +1,4 @@
-function B = build_bipartite_graph(img_loc,para,seg,seg_lab_vals,seg_edges)
+function [B,W_Y] = build_bipartite_graph(img_loc,para,seg,seg_lab_vals,seg_edges)
 
 img = imread(img_loc); 
 [X,Y,~] = size(img); 
