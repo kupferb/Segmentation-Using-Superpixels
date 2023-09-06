@@ -25,7 +25,7 @@ fclose(fid);
 run_type = "train";
 if run_type == "test"
     Nimgs = 100;
-    test_ims_map = "C:\Study\runs\bsd\test\ims_map_test.txt";
+    test_ims_map = "ims_map_test.txt";
     fid = fopen(test_ims_map);
     test_ims_map_data = cell2mat(textscan(fid,'%f %*s'));
     fclose(fid);
@@ -34,7 +34,7 @@ if run_type == "test"
 
 elseif run_type == "train"
     Nimgs = 200;
-    train_ims_map = "C:\Study\runs\bsd\train\ims_map_train.txt";
+    train_ims_map = "ims_map_train.txt";
     fid = fopen(train_ims_map);
     test_ims_map_data = cell2mat(textscan(fid,'%f %*s'));
     fclose(fid);
