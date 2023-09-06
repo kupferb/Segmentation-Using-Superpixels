@@ -17,7 +17,11 @@ para.beta  =  20;   % scale factor in superpixel affinity
 para.nb = 1; % number of neighbors for superpixels
 
 % read numbers of segments used in the paper 
-bsdsRoot = 'C:\Users\Benny\MATLAB\Projects\AF-graph\BSD';
+if strcmp(getenv('computername'),'BENNYK')
+    bsdsRoot = 'C:\Users\Benny\MATLAB\Projects\AF-graph\BSD';
+else
+    bsdsRoot = 'D:\MATLAB\github\AF-graph\BSD';
+end
 fid = fopen(fullfile('results','BSDS300','Nsegs.txt'),'r');
 Nimgs = 300; % number of images in BSDS300
 [BSDS_INFO] = fscanf(fid,'%d %d \n',[2,Nimgs]);
