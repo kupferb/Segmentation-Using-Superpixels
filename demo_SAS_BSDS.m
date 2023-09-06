@@ -45,14 +45,15 @@ else
     Nimgs = 300;
 end
 
-
+Nimgs_inds = 87:87;
+Nimgs = length(Nimgs_inds);
 PRI_all = zeros(Nimgs,1);
 VoI_all = zeros(Nimgs,1);
 GCE_all = zeros(Nimgs,1);
 BDE_all = zeros(Nimgs,1);
 
-for idxI = 1:Nimgs%64:Nimgs
-    
+for k_idxI = 1:Nimgs%64:Nimgs
+    idxI = Nimgs_inds(k_idxI);
     % read number of segments
     Nseg = 4;min(3,BSDS_INFO(2,idxI));
     
@@ -99,10 +100,10 @@ for idxI = 1:Nimgs%64:Nimgs
     out_vals = eval_segmentation(label_img,gt_imgs); clear label_img gt_imgs;
     fprintf('%6s: %2d %9.6f, %9.6f, %9.6f, %9.6f %d\n', img_name, Nseg, out_vals.PRI, out_vals.VoI, out_vals.GCE, out_vals.BDE, para_FH.K);
     
-    PRI_all(idxI) = out_vals.PRI;
-    VoI_all(idxI) = out_vals.VoI;
-    GCE_all(idxI) = out_vals.GCE;
-    BDE_all(idxI) = out_vals.BDE;
+    PRI_all(k_idxI) = out_vals.PRI;
+    VoI_all(k_idxI) = out_vals.VoI;
+    GCE_all(k_idxI) = out_vals.GCE;
+    BDE_all(k_idxI) = out_vals.BDE;
 end
 fprintf('Mean: %14.6f, %9.6f, %9.6f, %9.6f \n', mean(PRI_all), mean(VoI_all), mean(GCE_all), mean(BDE_all));
 

@@ -37,4 +37,5 @@ evec = bsxfun( @rdivide, evec, sqrt(sum(evec.*evec,2)) + 1e-10 );
 
 % k-means
 labels = k_means(evec',Nseg);
+% labels = kmeans(evec,Nseg);
 label_img = reshape(labels,img_size);
