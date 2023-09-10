@@ -49,7 +49,7 @@ else
     Nimgs = 300;
 end
 
-Nimgs_inds = 87:87;
+Nimgs_inds = 1:200;
 Nimgs = length(Nimgs_inds);
 PRI_all = zeros(Nimgs,1);
 VoI_all = zeros(Nimgs,1);

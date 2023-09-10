@@ -10,7 +10,9 @@ function [R, M] = k_means(X, K, seed)
 %
 %  KMEANS(X, K, SEED) uses SEED (default 1) to randomise initial assignments.
 
-if ~exist('seed', 'var'), seed = 1; end
+if ~exist('seed', 'var')
+    seed = 1; 
+end
 
 %
 %  Initialization
