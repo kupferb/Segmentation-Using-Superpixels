@@ -26,7 +26,7 @@ fid = fopen(fullfile('results','BSDS300','Nsegs.txt'),'r');
 Nimgs = 300; % number of images in BSDS300
 [BSDS_INFO] = fscanf(fid,'%d %d \n',[2,Nimgs]);
 fclose(fid);
-run_type = "train";
+run_type = "test";
 if run_type == "test"
     Nimgs = 100;
     test_ims_map = "ims_map_test.txt";
@@ -49,7 +49,7 @@ else
     Nimgs = 300;
 end
 
-Nimgs_inds = 1:200;
+Nimgs_inds = 1:Nimgs;
 Nimgs = length(Nimgs_inds);
 PRI_all = zeros(Nimgs,1);
 VoI_all = zeros(Nimgs,1);
@@ -100,7 +100,7 @@ for k_idxI = 1:Nimgs%64:Nimgs
 %     view_segmentation(img,label_img(:),out_path,img_name,0);
     
     % evaluate segmentation
-    [gt_imgs gt_cnt] = view_gt_segmentation(bsdsRoot,img,BSDS_INFO(1,idxI),out_path,img_name,1); clear img;
+    [gt_imgs gt_cnt] = view_gt_segmentation(bsdsRoot,img,BSDS_INFO(1,idxI),out_path,img_name,0); clear img;
     out_vals = eval_segmentation(label_img,gt_imgs); clear label_img gt_imgs;
     fprintf('%6s: %2d %9.6f, %9.6f, %9.6f, %9.6f %d\n', img_name, Nseg, out_vals.PRI, out_vals.VoI, out_vals.GCE, out_vals.BDE, para_FH.K);
     

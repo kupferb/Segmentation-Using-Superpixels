@@ -25,6 +25,7 @@ if true%sum(cvar) < 500 || sum(cvar(2:end)) < 100
     % gbis para
     para_gbis.sigma{1} = 0.5; para_gbis.k{1} = 100; para_gbis.minsize{1} = 50;
     para_gbis.sigma{2} = 0.8; para_gbis.k{2} = 200; para_gbis.minsize{2} = 100;
+
 else
     % gbis para
     para_gbis.sigma{1} = 0.8; para_gbis.k{1} = 150; para_gbis.minsize{1} = 50;
